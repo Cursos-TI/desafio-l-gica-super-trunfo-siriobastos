@@ -186,5 +186,195 @@ int main() {
         printf("Atributo de comparacao invalido.\n");
     }
 
+
+    // --- Declaração e inicialização das variáveis para a Carta 1 (Dados pré-definidos) ---
+    // Para simplificar e focar no menu e comparação, vamos usar dados fixos para as cartas.
+    // Em um cenário real, você reutilizaria a parte de entrada de dados do desafio anterior.
+    char estado1 = 'S';
+    char codigoCarta1[4] = "P01";
+    char nomeCidade1[50] = "Sao Paulo";
+    int populacao1 = 12325000;
+    float area1 = 1521.11;
+    float pib1 = 699.28; // em bilhões de reais
+    int pontosTuristicos1 = 50;
+    float densidadePopulacional1;
+    float pibPerCapita1;
+
+    // --- Declaração e inicialização das variáveis para a Carta 2 (Dados pré-definidos) ---
+    char estado2 = 'R';
+    char codigoCarta2[4] = "J02";
+    char nomeCidade2[50] = "Rio de Janeiro";
+    int populacao2 = 6748000;
+    float area2 = 1200.25;
+    float pib2 = 300.50; // em bilhões de reais
+    int pontosTuristicos2 = 30;
+    float densidadePopulacional2;
+    float pibPerCapita2;
+
+    // --- Cálculos de Densidade Populacional e PIB per Capita para Carta 1 ---
+    if (area1 > 0) {
+        densidadePopulacional1 = (float)populacao1 / area1;
+    } else {
+        densidadePopulacional1 = 0.0;
+    }
+    if (populacao1 > 0) {
+        pibPerCapita1 = pib1 / populacao1;
+    } else {
+        pibPerCapita1 = 0.0;
+    }
+
+    // --- Cálculos de Densidade Populacional e PIB per Capita para Carta 2 ---
+    if (area2 > 0) {
+        densidadePopulacional2 = (float)populacao2 / area2;
+    } else {
+        densidadePopulacional2 = 0.0;
+    }
+    if (populacao2 > 0) {
+        pibPerCapita2 = pib2 / populacao2;
+    } else {
+        pibPerCapita2 = 0.0;
+    }
+
+    // --- Exibição das Informações das Cartas ---
+    printf("--- Cartas Disponiveis ---\n");
+    printf("\nCarta 1: %s\n", nomeCidade1);
+    printf("  Estado: %c\n", estado1);
+    printf("  Codigo: %s\n", codigoCarta1);
+    printf("  Populacao: %d\n", populacao1);
+    printf("  Area: %.2f km²\n", area1);
+    printf("  PIB: %.2f bilhoes de reais\n", pib1);
+    printf("  Pontos Turisticos: %d\n", pontosTuristicos1);
+    printf("  Densidade Populacional: %.2f hab/km²\n", densidadePopulacional1);
+    printf("  PIB per Capita: %.2f bilhoes de reais/hab\n", pibPerCapita1);
+
+    printf("\nCarta 2: %s\n", nomeCidade2);
+    printf("  Estado: %c\n", estado2);
+    printf("  Codigo: %s\n", codigoCarta2);
+    printf("  Populacao: %d\n", populacao2);
+    printf("  Area: %.2f km²\n", area2);
+    printf("  PIB: %.2f bilhoes de reais\n", pib2);
+    printf("  Pontos Turisticos: %d\n", pontosTuristicos2);
+    printf("  Densidade Populacional: %.2f hab/km²\n", densidadePopulacional2);
+    printf("  PIB per Capita: %.2f bilhoes de reais/hab\n", pibPerCapita2);
+
+    // --- Menu Interativo ---
+    int escolhaAtributo;
+    printf("\n--- Escolha o atributo para comparacao ---\n");
+    printf("1. Populacao\n");
+    printf("2. Area\n");
+    printf("3. PIB\n");
+    printf("4. Numero de Pontos Turisticos\n");
+    printf("5. Densidade Populacional\n");
+    printf("6. PIB per Capita\n");
+    printf("Digite o numero da sua escolha: ");
+    scanf("%d", &escolhaAtributo);
+
+    // --- Variáveis para armazenar os valores do atributo escolhido ---
+    float valorAtributo1 = 0.0;
+    float valorAtributo2 = 0.0;
+    char nomeAtributo[40]; // Para armazenar o nome do atributo para exibição
+    char vencedor[50];     // Para armazenar o nome da cidade vencedora
+    int empate = 0;        // Flag para indicar empate
+
+    // --- Lógica de Comparação usando switch e if-else aninhados ---
+    switch (escolhaAtributo) {
+        case 1: // Populacao
+            strcpy(nomeAtributo, "Populacao");
+            valorAtributo1 = (float)populacao1;
+            valorAtributo2 = (float)populacao2;
+            if (populacao1 > populacao2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (populacao2 > populacao1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        case 2: // Area
+            strcpy(nomeAtributo, "Area");
+            valorAtributo1 = area1;
+            valorAtributo2 = area2;
+            if (area1 > area2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (area2 > area1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        case 3: // PIB
+            strcpy(nomeAtributo, "PIB");
+            valorAtributo1 = pib1;
+            valorAtributo2 = pib2;
+            if (pib1 > pib2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (pib2 > pib1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        case 4: // Numero de Pontos Turisticos
+            strcpy(nomeAtributo, "Numero de Pontos Turisticos");
+            valorAtributo1 = (float)pontosTuristicos1;
+            valorAtributo2 = (float)pontosTuristicos2;
+            if (pontosTuristicos1 > pontosTuristicos2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (pontosTuristicos2 > pontosTuristicos1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        case 5: // Densidade Populacional (menor valor vence)
+            strcpy(nomeAtributo, "Densidade Populacional");
+            valorAtributo1 = densidadePopulacional1;
+            valorAtributo2 = densidadePopulacional2;
+            // Regra especial: menor valor vence
+            if (densidadePopulacional1 < densidadePopulacional2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (densidadePopulacional2 < densidadePopulacional1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        case 6: // PIB per Capita
+            strcpy(nomeAtributo, "PIB per Capita");
+            valorAtributo1 = pibPerCapita1;
+            valorAtributo2 = pibPerCapita2;
+            if (pibPerCapita1 > pibPerCapita2) {
+                strcpy(vencedor, nomeCidade1);
+            } else if (pibPerCapita2 > pibPerCapita1) {
+                strcpy(vencedor, nomeCidade2);
+            } else {
+                empate = 1;
+            }
+            break;
+
+        default:
+            printf("\nOpcao invalida! Por favor, escolha um numero de 1 a 6.\n");
+            return 1; // Sai do programa com erro
+    }
+
+    // --- Exibição do Resultado da Comparação ---
+    printf("\n--- Resultado da Comparacao ---\n");
+    printf("Atributo de Comparacao: %s\n", nomeAtributo);
+    printf("Carta 1 - %s: %.2f\n", nomeCidade1, valorAtributo1);
+    printf("Carta 2 - %s: %.2f\n", nomeCidade2, valorAtributo2);
+
+    if (empate) {
+        printf("Resultado: Empate!\n");
+    } else {
+        printf("Resultado: %s (%s) venceu!\n", vencedor, (strcmp(vencedor, nomeCidade1) == 0) ? "Carta 1" : "Carta 2");
+    }
+
     return 0; // Indica que o programa foi executado com sucesso
 }
+
+ 
